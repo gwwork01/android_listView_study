@@ -1,2 +1,2 @@
-# SOPT_android
-SOPT_android
+# Android_ListView_Test
+ ListView practice using ViewHolder
