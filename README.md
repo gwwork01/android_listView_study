@@ -1,2 +1,2 @@
 # Android_ListView_Test
- ListView practice using ViewHolder
+ ListView practice (using ViewHolder)
