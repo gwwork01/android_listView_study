@@ -49,11 +49,6 @@ public class MainActivity extends AppCompatActivity {
         btnSubmit = (Button)findViewById(R.id.btnSubmit);
         listView = (ListView)findViewById(R.id.listView);
 
-        /* 이제 사용자가 EditText에 입력한 데이터들을 저장해줘야 합니다.
-           언제 저장을 해야 할까요???
-           바로 버튼을 눌렀을 때 데이터들이 저장이 되어야 합니다.
-         */
-
         btnSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,21 +68,20 @@ public class MainActivity extends AppCompatActivity {
                 else {
 
                     /*EditText를 통해 사용자로부터 String 형태의 Title과 Description을 받아오면 이것들을 저장할 변수 또는 객체가 필요합니다.
-                      String 형태로 각각 Title과 Description을 저장할까요? 아니죠.
                       String 형의 Title과 Description 둘을 동시에 저장하기 위해 ItemData라는 클래스를 만들었으니 활용해야죠.
-                      ItemData 객체를 생성해서 거기에 저장을 하는 겁니다.*/
+                     */
 
                     ItemData itemData_submit = new ItemData(); //ItemData 객체 itemData_submit를 생성. submit될 것이므로 이름이 헷갈리지 않게 _submit를 덧붙였습니다.
                     itemData_submit.Title = editTitle.getText().toString(); //itemData_submit의 Title 멤버변수에 EditText의 내용 저장
                     itemData_submit.Description = editDescription.getText().toString(); //itemData_submit의 Description 멤버변수에 EditText의 내용 저장
 
                     /*itemData_submit에 사용자가 입력했던 Title과 Description이 저장되었습니다.
-                      이제 이 녀석을 ArrayList<ItemData> 객체인 itemDatas에 하나의 배열 데이터로 추가를 해야겠죠?
+                      이제 이 녀석을 ArrayList<ItemData> 객체인 itemDatas에 하나의 배열 데이터로 추가합니다.
                      */
 
                     itemDatas.add(0, itemData_submit);
-                    // TODO: 2015-10-12  ListView 갱신하기
-                    adapter.notifyDataSetChanged(); //itemDatas에 데이터가 추가되었으니 이를 adapter에 알려야겠죠?
+                    
+                    adapter.notifyDataSetChanged(); //itemDatas에 데이터가 추가되었으니 이를 adapter에 알립립닏립니다.
 
                     editTitle.setText("");
                     editDescription.setText("");
@@ -96,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
                     listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                         @Override
                         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                            ItemData itemData_temp = (ItemData)adapter.getItem(position); //getItem메소드는 Object형으로 반환을 하므로 ItemData형으로 캐스팅을 해주어야 합니다.
+                            ItemData itemData_temp = (ItemData)adapter.getItem(position); //getItem메소드는 Object형으로 반환을 하므로 ItemData형으로 캐스팅합니다.
                             Toast.makeText(getApplicationContext(), itemData_temp.Title + "\n" + itemData_temp.Description, Toast.LENGTH_SHORT).show();
                         }
                     });
@@ -107,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
 
                             ItemData itemData_temp = (ItemData)adapter.getItem(position);
                             itemDatas.remove(itemData_temp); //itemDatas에서 해당 데이터를 가진 부분을 삭제합니다.
-                            adapter.notifyDataSetChanged(); //itemDatas에 데이터가 삭제되었으니 이를 adapter에 알려야겠죠?
+                            adapter.notifyDataSetChanged(); //itemDatas에 데이터가 삭제되었으니 이를 adapter에 알립니다
 
                             return false;
                         }
